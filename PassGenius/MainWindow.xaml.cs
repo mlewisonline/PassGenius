@@ -135,6 +135,7 @@ namespace PassGenius
 
             //  Task to clear status after 5 Seconds
             await ClearStatusAsync();
+            await ClearClipboardAfter60SecAsync();
         }
 
         private async void WordsResultLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -149,6 +150,7 @@ namespace PassGenius
 
             // Task to clear status after 5 Seconds
             await ClearStatusAsync();
+            await ClearClipboardAfter60SecAsync();
         }
 
         private async Task ClearStatusAsync()
@@ -157,9 +159,9 @@ namespace PassGenius
             statusText.Text = String.Empty;
         }
 
-        private async Task ClearClipboardAfter90SecAsync()
+        private async Task ClearClipboardAfter60SecAsync()
         {
-            await Task.Delay(90000);
+            await Task.Delay(60000);
             Clipboard.Clear();
         }
 
@@ -283,11 +285,13 @@ namespace PassGenius
             MakeSureLowerCaseAlwaysEnabled();
         }
 
-        private void MakeSureLowerCaseAlwaysEnabled (){
+        private void MakeSureLowerCaseAlwaysEnabled ()
+        {
             if (LowerCheckbox.IsChecked == false && UpperCheckbox.IsChecked == false && NumbersCheckbox.IsChecked == false && SpecialsCheckbox.IsChecked == false)
             {
                 LowerCheckbox.IsChecked = true;
             }
-            }
+            
+        }
     }
 }
