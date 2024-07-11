@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassGenius", "PassGenius\PassGenius.csproj", "{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassGenius", "PassGenius\PassGenius.csproj", "{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

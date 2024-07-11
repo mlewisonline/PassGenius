@@ -7,6 +7,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>lockIcon.ico</ApplicationIcon>
+    <Platforms>AnyCPU</Platforms>
+    <Description>Generate secure passwords and phrases effortlessly</Description>
+    <Copyright>Matthew Lewis 2024</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
