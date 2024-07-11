@@ -25,7 +25,7 @@ namespace PassGenius
         private void SetupInitialUIValues()
         {
 
-            sliderBar.Minimum = 14;
+            sliderBar.Minimum = 10;
             sliderBar.Maximum = 128;
             sliderBar.Value = 14;
 
@@ -39,19 +39,10 @@ namespace PassGenius
             Application.Current.Shutdown();
         }
 
-        private void EnCheck_Checked(object sender, RoutedEventArgs e)
-        {
-           
-        }
 
-        private void DeCheck_Checked(object sender, RoutedEventArgs e)
+        private void WordsButton_Click(object sender, RoutedEventArgs e)
         {
-           
-        }
-
-        private void XKCDButton_Click(object sender, RoutedEventArgs e)
-        {
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void GenButon_Click(object sender, RoutedEventArgs e)
@@ -92,11 +83,11 @@ namespace PassGenius
             await ClearStatusAsync();
         }
 
-        private async void XKCDResultLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void WordsResultLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           XKCDResultLabel.SelectAll();
+            WordsResultLabel.SelectAll();
 
-            string str = XKCDResultLabel.Text;
+            string str = WordsResultLabel.Text;
 
             Clipboard.SetText(str);
 
@@ -121,12 +112,6 @@ namespace PassGenius
         private void SliderBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
            DisplayPrettyPassword(PasswordGenerator.GetPassword((int)sliderBar.Value));
-        }
-
-        private void WordsSliderBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void DisplayPrettyPassword(string input)
@@ -161,40 +146,46 @@ namespace PassGenius
             }
         }
 
+        private void WordsSliderBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+        }
+
         private void Titlecase_Checked(object sender, RoutedEventArgs e)
         {
                 Uppercase.IsEnabled = false;
-                XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+                WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void Uppercase_Checked(object sender, RoutedEventArgs e)
         {
             Titlecase.IsEnabled = false;
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void Titlecase_Unchecked(object sender, RoutedEventArgs e)
         {
             Uppercase.IsEnabled = true;
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void Uppercase_Unchecked(object sender, RoutedEventArgs e)
         {
             Titlecase.IsEnabled = true;
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void Separator_Checked(object sender, RoutedEventArgs e)
         {
             wordSeparator = '-';
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
 
         private void Separator_Unchecked(object sender, RoutedEventArgs e)
         {
             wordSeparator = ' ';
-            XKCDResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
         }
     }
 }
