@@ -32,6 +32,76 @@ namespace PassGenius
             WordsSliderBar.Minimum = 3;
             WordsSliderBar.Maximum = 9;
             WordsSliderBar.Value = 4;
+
+            LowerCheckbox.IsChecked = true;
+            UpperCheckbox.IsChecked = true;
+            NumbersCheckbox.IsChecked = true;
+            SpecialsCheckbox.IsChecked = true;
+        }
+
+        private int SetPasswordCharSet()
+        {
+            if (LowerCheckbox.IsChecked == true && UpperCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 1;
+            }
+            if (LowerCheckbox.IsChecked == true && UpperCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true)
+            {
+                return 2;
+            }
+            if (LowerCheckbox.IsChecked == true && UpperCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 3;
+            }
+            if (LowerCheckbox.IsChecked == true && UpperCheckbox.IsChecked == true)
+            {
+                return 4;
+            }
+            if (LowerCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 5;
+            }
+            if (LowerCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true)
+            {
+                return 6;
+            }
+            if (LowerCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 7;
+            }
+            if (LowerCheckbox.IsChecked == true)
+            {
+                return 8;
+            }
+            if (UpperCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 9;
+            }
+            if (UpperCheckbox.IsChecked == true && NumbersCheckbox.IsChecked == true)
+            {
+                return 10;
+            }
+            if (UpperCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 11;
+            }
+            if (UpperCheckbox.IsChecked == true)
+            {
+                return 12;
+            }
+            if (NumbersCheckbox.IsChecked == true && SpecialsCheckbox.IsChecked == true)
+            {
+                return 13;
+            }
+            if (NumbersCheckbox.IsChecked == true)
+            {
+                return 14;
+            }
+            if (SpecialsCheckbox.IsChecked == true)
+            {
+                return 15;
+            }
+            return 1;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -42,31 +112,15 @@ namespace PassGenius
 
         private void WordsButton_Click(object sender, RoutedEventArgs e)
         {
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void GenButon_Click(object sender, RoutedEventArgs e)
         {
-            DisplayPrettyPassword(PasswordGenerator.GetPassword((int)sliderBar.Value));
+            var set = SetPasswordCharSet();
+            DisplayPrettyPassword(PasswordGenerator.GetPassword((int)sliderBar.Value, set));
         }
 
-        private void Radio1_Checked(object sender, RoutedEventArgs e)
-        {
-            characterSetFlag = 1;
-           // DisplayPrettyPassword(StringGenerator.GetPasswordString((int)sliderBar.Value, characterSetFlag));
-        }
-
-        private void Radio2_Checked(object sender, RoutedEventArgs e)
-        {
-            characterSetFlag = 2;
-           // DisplayPrettyPassword(StringGenerator.GetPasswordString((int)sliderBar.Value, characterSetFlag));
-        }
-
-        private void Radio3_Checked(object sender, RoutedEventArgs e)
-        {
-            characterSetFlag = 3;
-           // DisplayPrettyPassword(StringGenerator.GetPasswordString((int)sliderBar.Value, characterSetFlag));
-        }
 
         private async void GenPasswordTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -111,7 +165,8 @@ namespace PassGenius
 
         private void SliderBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-           DisplayPrettyPassword(PasswordGenerator.GetPassword((int)sliderBar.Value));
+            var set = SetPasswordCharSet();
+            DisplayPrettyPassword(PasswordGenerator.GetPassword((int)sliderBar.Value,set));
         }
 
         private void DisplayPrettyPassword(string input)
@@ -142,50 +197,97 @@ namespace PassGenius
                     run.FontWeight = FontWeights.Bold;
                     inlines.Add(run);
                 }
-
             }
         }
 
         private void WordsSliderBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Titlecase_Checked(object sender, RoutedEventArgs e)
         {
-                Uppercase.IsEnabled = false;
-                WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            Uppercase.IsEnabled = false;
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Uppercase_Checked(object sender, RoutedEventArgs e)
         {
             Titlecase.IsEnabled = false;
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Titlecase_Unchecked(object sender, RoutedEventArgs e)
         {
             Uppercase.IsEnabled = true;
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Uppercase_Unchecked(object sender, RoutedEventArgs e)
         {
             Titlecase.IsEnabled = true;
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Separator_Checked(object sender, RoutedEventArgs e)
         {
             wordSeparator = '-';
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
 
         private void Separator_Unchecked(object sender, RoutedEventArgs e)
         {
             wordSeparator = ' ';
-            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.Value, Titlecase.IsChecked.Value);
+            WordsResultLabel.Text = WordGenerator.GetWords((int)WordsSliderBar.Value, wordSeparator, Uppercase.IsChecked.GetValueOrDefault(), Titlecase.IsChecked.GetValueOrDefault());
         }
+
+        private void LowerCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpperCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NumbersCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SpecialsCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void LowerCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MakeSureLowerCaseAlwaysEnabled();
+
+        }
+
+        private void UpperCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MakeSureLowerCaseAlwaysEnabled();
+        }
+
+        private void NumbersCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MakeSureLowerCaseAlwaysEnabled();
+        }
+
+        private void SpecialsCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MakeSureLowerCaseAlwaysEnabled();
+        }
+
+        private void MakeSureLowerCaseAlwaysEnabled (){
+            if (LowerCheckbox.IsChecked == false && UpperCheckbox.IsChecked == false && NumbersCheckbox.IsChecked == false && SpecialsCheckbox.IsChecked == false)
+            {
+                LowerCheckbox.IsChecked = true;
+            }
+            }
     }
 }

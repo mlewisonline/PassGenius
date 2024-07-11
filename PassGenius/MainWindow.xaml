@@ -114,10 +114,11 @@
 
 
 
-        <TextBlock Grid.Column="1" Grid.Row="7" Text="Passphrase:" Margin="0,10,10,10" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="1" Grid.Row="4" Text="Password:" Margin="0,10,10,10" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="1" Grid.Row="6" Text="Recipe:" Margin="0,0,10,10" VerticalAlignment="Center"/>
-
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Password:" Margin="0,10,10,10" VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Options:" Margin="0,0,10,10" VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" Grid.Row="7" Text="Passphrase:" Margin="0,10,10,10" VerticalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" Grid.Row="9" Text="Options:" Margin="0,0,10,30" VerticalAlignment="Center" FontWeight="Bold"/>
+        
         <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="WordsResultLabel" Padding="10,5,5,5" Grid.Column="2" Grid.Row="7" Width="550"  Margin="0,10,10,10" MouseDoubleClick="WordsResultLabel_MouseDoubleClick" FontSize="14" ToolTip="Double Click: Copy to clipboard" IsTabStop="False" />
 
 
@@ -160,9 +161,10 @@
                      ValueChanged="SliderBar_ValueChanged"  SmallChange="1" IsSnapToTickEnabled="True" TabIndex="7" />
 
             <TextBox x:Name="sliderVal"  Text="{Binding ElementName=sliderBar, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" IsReadOnly="True" BorderThickness="0" />
-            <RadioButton x:Name="Radio1" Content="ABC123abc@#$%" HorizontalAlignment="Right"  Margin="0,0,10,0"  IsChecked="True" Checked="Radio1_Checked" TabIndex="8"/>
-            <RadioButton x:Name="Radio2" Content="ABC123abc" HorizontalContentAlignment="Right" Margin="0,0,10,0"  Checked="Radio2_Checked" TabIndex="9" />
-            <RadioButton x:Name="Radio3" Content="ABCabc" HorizontalContentAlignment="Right"  Margin="0,0,20,0"  Checked="Radio3_Checked" TabIndex="10" />
+            <CheckBox x:Name="LowerCheckbox" Content="a-z" HorizontalAlignment="Right" Margin="0,0,10,0" Checked="LowerCheckbox_Checked" Unchecked="LowerCheckbox_Unchecked"/>
+            <CheckBox x:Name="UpperCheckbox" Content="A-Z" HorizontalAlignment="Right" Margin="0,0,10,0" Checked="UpperCheckbox_Checked" Unchecked="UpperCheckbox_Unchecked"/>
+            <CheckBox x:Name="NumbersCheckbox" Content="0-9" HorizontalAlignment="Right" Margin="0,0,10,0" Checked="NumbersCheckbox_Checked" Unchecked="NumbersCheckbox_Unchecked"/>
+            <CheckBox x:Name="SpecialsCheckbox" Content="!@#$%^&amp;*" HorizontalAlignment="Right" Margin="0,0,10,0" Checked="SpecialsCheckbox_Checked" Unchecked="SpecialsCheckbox_Unchecked"/>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" Orientation="Horizontal" >

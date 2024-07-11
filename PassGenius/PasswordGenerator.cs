@@ -115,26 +115,83 @@ public static class PasswordGenerator
         {
             passwordLength = 10;
         }
-        if (characterSet == 1)
+        switch (characterSet)
         {
-            allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{numberCharSet}{specialCharSet}";
-
-        }
-        if (characterSet == 2)
-        {
-            allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{numberCharSet}";
-            specialEnabled = false;
-        }
-        if (characterSet == 3)
-        {
-            allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{specialCharSet}";
-            numberEnabled = false;
-        }
-        if (characterSet == 4)
-        {
-            allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}";
-            numberEnabled = false;
-            specialEnabled = false;
+            case 1:
+                allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{numberCharSet}{specialCharSet}";
+                break;
+            case 2:
+                allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{numberCharSet}";
+                specialEnabled   = false;
+                break;
+            case 3:
+                allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}{specialCharSet}";
+                numberEnabled    = false;
+                break;
+            case 4:
+                allCharSet = $"{lowercaseCharSet}{uppercaseCharSet}";
+                numberEnabled    = false;
+                specialEnabled   = false;
+                break;
+            case 5:
+                allCharSet = $"{lowercaseCharSet}{numberCharSet}{specialCharSet}";
+                uppercaseEnabled = false;
+                break;
+            case 6:
+                allCharSet = $"{lowercaseCharSet}{numberCharSet}";
+                uppercaseEnabled = false;
+                specialEnabled   = false;
+                break;
+            case 7:
+                allCharSet = $"{lowercaseCharSet}{specialCharSet}";
+                uppercaseEnabled = false;
+                numberEnabled    = false;
+                break;
+            case 8:
+                allCharSet = $"{lowercaseCharSet}";
+                uppercaseEnabled = false;
+                numberEnabled    = false;
+                specialEnabled   = false;
+                break;
+            case 9:
+                allCharSet = $"{uppercaseCharSet}{numberCharSet}{specialCharSet}";
+                lowercaseEnabled = false;
+                break;
+            case 10:
+                allCharSet = $"{uppercaseCharSet}{numberCharSet}";
+                lowercaseEnabled = false;
+                specialEnabled   = false;
+                break;
+            case 11:
+                allCharSet = $"{uppercaseCharSet}{specialCharSet}";
+                lowercaseEnabled = false;
+                numberEnabled    = false;
+                break;
+            case 12:
+                allCharSet = $"{uppercaseCharSet}";
+                lowercaseEnabled = false;
+                numberEnabled    = false;
+                specialEnabled   = false;
+                break;
+            case 13:
+                allCharSet = $"{numberCharSet}{specialCharSet}";
+                lowercaseEnabled = false;
+                uppercaseEnabled = false;
+                break;
+            case 14:
+                allCharSet = $"{numberCharSet}";
+                uppercaseEnabled = false;
+                lowercaseEnabled = false;
+                specialEnabled   = false;
+                break;
+            case 15:
+                allCharSet = $"{specialCharSet}";
+                uppercaseEnabled = false;
+                lowercaseEnabled = false;
+                numberEnabled    = false;
+                break;
+            default:
+                break;
         }
         var password = GeneratePositions(length: passwordLength);
         return ReturnPasswordString(password);
