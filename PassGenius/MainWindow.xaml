@@ -5,8 +5,182 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassGenius"
         mc:Ignorable="d"
-        Title="PassGenius" Height="450" Width="800">
+        Title="PassGenius" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="PasswordBoxBaseControlTemplate" TargetType="{x:Type PasswordBox}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Black"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="RoundedButtonTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="border" 
+                    CornerRadius="10" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition MinWidth="20"/>
+        </Grid.ColumnDefinitions>
+
+
+
+        <StackPanel Grid.Column="2"  Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Image  x:Name="logoImga" MaxHeight="100" MaxWidth="100" Margin="0,10,10,10" Source="/lockIcon.png"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="logoHeader" Text="PassGenius" HorizontalAlignment="Center" FontSize="38" Margin="0,20,20,0" FontWeight="Bold"/>
+                <TextBlock x:Name="logoCopyright" Text="Copyright © Matthew Lewis 2024" Padding="30,0,0,0" HorizontalAlignment="Center" FontSize="10" FontWeight="Bold"/>
+            </StackPanel>
+        </StackPanel>
+
+
+
+        <TextBlock Grid.Column="1" Grid.Row="7" Text="Passphrase:" Margin="0,10,10,10" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Password:" Margin="0,10,10,10" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Recipe:" Margin="0,0,10,10" VerticalAlignment="Center"/>
+
+        <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="XKCDResultLabel" Padding="10,5,5,5" Grid.Column="2" Grid.Row="7" Width="550"  Margin="0,10,10,10" MouseDoubleClick="XKCDResultLabel_MouseDoubleClick" FontSize="14" ToolTip="Double Click: Copy to clipboard" IsTabStop="False" />
+
+
+        <TextBlock x:Name="GenPasswordOverlay"
+        HorizontalAlignment="{Binding Path=HorizontalAlignment, ElementName=GenPasswordTextBox}"
+        VerticalAlignment="{Binding Path=VerticalAlignment, ElementName=GenPasswordTextBox}"
+        Grid.Column="2" 
+        Grid.Row="4" 
+        Width="{Binding Path=Width, ElementName=GenPasswordTextBox}"
+        Margin="{Binding Path=Margin, ElementName=GenPasswordTextBox}"
+        FontSize="{Binding Path=FontSize, ElementName=GenPasswordTextBox}"
+        Padding="10,5,5,5" 
+        
+        />
+
+        <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="GenPasswordTextBox" 
+        Grid.Column="2" 
+        Grid.Row="4" 
+        Width="550"
+        Margin="0,10,10,10" 
+        Background="Transparent"
+        Foreground="Transparent"
+        MouseDoubleClick="GenPasswordTextBox_MouseDoubleClick"  
+        FontSize="14" 
+        IsReadOnly="True"
+                 ToolTip="Double Click: Copy to clipboard" IsTabStop="False"
+        />
+
+        <StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right"  />
+
+
+        <Button Template="{StaticResource RoundedButtonTemplate}" x:Name="XKCDButton" Grid.Column="4" Grid.Row="7" Content="_Create" Margin="10,10,10,10" Width="77" Height="27" Click="XKCDButton_Click" TabIndex="1"/>
+        <Button Template="{StaticResource RoundedButtonTemplate}" x:Name="GenButon" Grid.Column="4" Grid.Row="4" Content="_Create" Margin="10,10,10,10" Width="77" Height="27" Click="GenButon_Click" TabIndex="2" />
+        <Button Template="{StaticResource RoundedButtonTemplate}" x:Name="exitButton" Grid.Column="4" Grid.Row="9" Content="_Quit" Margin="10,10,10,10" Width="77" Height="27" Click="ExitButton_Click"  TabIndex="4"/>
+
+
+
+        <StackPanel Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Orientation="Horizontal" >
+            <Slider x:Name="sliderBar"  Width="180" HorizontalAlignment="Left" Margin="0,0,10,0" 
+                     ValueChanged="SliderBar_ValueChanged"  SmallChange="1" IsSnapToTickEnabled="True" TabIndex="7" />
+
+            <TextBox x:Name="sliderVal"  Text="{Binding ElementName=sliderBar, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" IsReadOnly="True" BorderThickness="0" />
+            <RadioButton x:Name="Radio1" Content="ABC123abc@#$%" HorizontalAlignment="Right"  Margin="0,0,10,0"  IsChecked="True" Checked="Radio1_Checked" TabIndex="8"/>
+            <RadioButton x:Name="Radio2" Content="ABC123abc" HorizontalContentAlignment="Right" Margin="0,0,10,0"  Checked="Radio2_Checked" TabIndex="9" />
+            <RadioButton x:Name="Radio3" Content="ABCabc" HorizontalContentAlignment="Right"  Margin="0,0,20,0"  Checked="Radio3_Checked" TabIndex="10" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" Orientation="Horizontal" >
+            <Slider x:Name="WordsSliderBar"  Width="180" HorizontalAlignment="Left" Margin="0,0,10,0" 
+                ValueChanged="WordsSliderBar_ValueChanged"  SmallChange="1" IsSnapToTickEnabled="True" TabIndex="8" />
+            <TextBox x:Name="WordsSliderVal"  Text="{Binding ElementName=WordsSliderBar, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" IsReadOnly="True" BorderThickness="0" />
+            
+            <CheckBox x:Name="Titlecase" Content="Titlecase" HorizontalAlignment="Right" Margin="0,0,10,0" IsChecked="False" Checked="Titlecase_Checked" Unchecked="Titlecase_Unchecked"/>
+            <CheckBox x:Name="Uppercase" Content="Uppercase" HorizontalAlignment="Right" Margin="0,0,10,0" IsChecked="False" Checked="Uppercase_Checked" Unchecked="Uppercase_Unchecked"/>
+            <CheckBox x:Name="Separator" Content="Separator" HorizontalAlignment="Right" Margin="0,0,10,0" IsChecked="True" Checked="Separator_Checked" Unchecked="Separator_Unchecked"/>
+        </StackPanel>
+
+        <StatusBar x:Name="statusBar" Grid.Row="11"  Grid.ColumnSpan="6">
+            <TextBlock x:Name="statusText" Foreground="#FF0F8924" FontSize="10"/>
+        </StatusBar>
+      
 
     </Grid>
+
+
 </Window>
