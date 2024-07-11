@@ -6,6 +6,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>lockIcon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="lockIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="lockIcon.ico" />
+    <Resource Include="lockIcon.png" />
+  </ItemGroup>
 
 </Project>
