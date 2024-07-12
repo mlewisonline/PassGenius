@@ -86,7 +86,8 @@
 
         static void DisplayHelp()
         {
-            Console.WriteLine("\nUsage Password: passgenius-cli [p] [length] [set]");
+            Console.WriteLine("\nPassGenius-cli Copyright Matthew Lewis 2024");
+            Console.WriteLine("Usage Password: passgenius-cli [p] [length] [set]");
             Console.WriteLine("Usage Passphrase: PassGenius-cli [w] [NumberOfWords] [Separator] [U]uppercase || [T]titlecase\r\n");
             Console.WriteLine("""
                 Available character sets:
@@ -98,9 +99,10 @@
                 11: Upper + Special                   | 12: Upper
                 13: Numbers + Special                 | 14: Numbers
                 15: Special
+
                 """);
-            Console.WriteLine("Ex Password: passgenius-cli p 14 1 (creates a password of 14 character made of Lower, Upper, Numbers and Special characters)");
-            Console.WriteLine("Example Passphrase: passgenius-cli w 4 U (creates GALLANTLY ANTHOLOGY LAZILY ENSLAVE )");
+            Console.WriteLine("Password: passgenius-cli p 14 1 (creates a password of 14 character made of Lower, Upper, Numbers and Special characters)");
+            Console.WriteLine("Passphrase: passgenius-cli w 4 U (creates GALLANTLY ANTHOLOGY LAZILY ENSLAVE )\r\n");
 
         }
     }
