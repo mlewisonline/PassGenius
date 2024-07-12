@@ -10,7 +10,28 @@
                 {
                     case 3:
                         if (int.TryParse(args[1], out var length) && int.TryParse(args[2], out var set)){
-                            Console.WriteLine(PasswordGenerator.GetPassword(length, set));
+                            var password = PasswordGenerator.GetPassword(length, set);
+                            ConsoleColor OrginalConsoleColour = Console.ForegroundColor;
+                            foreach (var c in password)
+                            {
+                                if (char.IsNumber(c))
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.Write(c);
+                                    Console.ForegroundColor = OrginalConsoleColour;
+                                }
+                                else if (char.IsSymbol(c) || char.IsPunctuation(c)){
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.Write(c);
+                                    Console.ForegroundColor = OrginalConsoleColour;
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.Write(c);
+                                    Console.ForegroundColor = OrginalConsoleColour;
+                                }
+                            }
                         }
                         else
                         {
