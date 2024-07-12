@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassGenius", "PassGenius\PassGenius.csproj", "{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassGenius-cli", "PassGenius-cli\PassGenius-cli.csproj", "{507D1140-E442-4B94-8E8B-D94B3D890740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B7564AC-8F42-4BFD-BFA7-541A168FDA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507D1140-E442-4B94-8E8B-D94B3D890740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507D1140-E442-4B94-8E8B-D94B3D890740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507D1140-E442-4B94-8E8B-D94B3D890740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507D1140-E442-4B94-8E8B-D94B3D890740}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
