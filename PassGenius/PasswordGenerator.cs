@@ -103,11 +103,7 @@ public static class PasswordGenerator
     /// 
     /// </summary>
     /// <param name="passwordLength"> Min 10 Max 128</param>
-    /// <param name="characterSet"> 
-    ///  1 = Lowercase, Uppercase, Numbers and Special.
-    ///  2 = Lowercase, Uppercase and Numbers.
-    ///  3 = Lowercase, Uppercase and Special.
-    ///  4 = Lowercase and Uppercase.</param>
+    /// <param name="characterSet"> 1 to 15</param>
     /// <returns></returns>
     public static string GetPassword(int passwordLength = 10, int characterSet = 1)
     {
